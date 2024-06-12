@@ -24,7 +24,6 @@ import youtubeMiner.service.YoutubeChannelService;
 @RestController
 @RequestMapping("/youtube")
 public class ChannelController {
-    RestTemplate restTemplate = new RestTemplate();
 
 
     @Operation(summary = "Find a channel by id", description = "Find a channel by id in Youtube API", tags = { "Youtube", "Get operations"})
@@ -78,7 +77,6 @@ public class ChannelController {
     public Channel saveYouTube(@Parameter(description = "ID of the channel to be searched in Youtube and saved in the DataBase")@PathVariable String id,
             @Parameter(description= "Maximum number of videos to post")@RequestParam(required = false, defaultValue = "10") Integer maxVideos,
             @Parameter(description= "Maximum number of comments to post")@RequestParam(required = false, defaultValue = "10") Integer maxComments) throws ChannelNotFoundException, VideoWithoutCommentsException, VideoNotFoundException {
-        Channel channel = findOneYoutube(id, maxVideos, maxComments);
-        return channel;
+        return YoutubeChannelService.postChannel(id, maxVideos, maxComments);
     }
 }

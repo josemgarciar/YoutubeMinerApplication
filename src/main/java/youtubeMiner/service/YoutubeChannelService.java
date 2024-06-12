@@ -33,9 +33,9 @@ public class YoutubeChannelService {
         }
     }
 
-    public static Channel postChannel(String id)  throws ChannelNotFoundException, VideoNotFoundException, VideoWithoutCommentsException {
+    public static Channel postChannel(String id, Integer maxVideos, Integer maxComments)  throws ChannelNotFoundException, VideoNotFoundException, VideoWithoutCommentsException {
 
-        Channel channel = getChannel(id, 10, 10);
+        Channel channel = getChannel(id, maxVideos, maxComments);
 
         if (channel != null) {
             restTemplate.postForObject("http://localhost:8080/videominer/channels", channel, Channel.class);

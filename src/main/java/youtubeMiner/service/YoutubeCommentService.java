@@ -35,7 +35,7 @@ public class YoutubeCommentService {
         List<youtubeMiner.DataBaseModel.Comment> comments = new ArrayList<>();
 
         if (response.getStatusCode() == HttpStatus.FORBIDDEN) {
-            throw new VideoWithoutCommentsException();
+            return comments;
         } else {
             for (youtubeMiner.model.comment.Comment c : response.getBody().getItems()) {
                 youtubeMiner.DataBaseModel.Comment comment = new youtubeMiner.DataBaseModel.Comment();
