@@ -40,8 +40,8 @@ public class ChannelController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public Channel findOneYoutube(@Parameter(description ="ID of the channel to be searched") @PathVariable String id,
-                                  @Parameter(description = "Maximum number of videos to be posted. Only used when called from the POST operation")@RequestParam(required = false, defaultValue = "10") Integer maxVideos,
-                                  @Parameter(description = "Maximum number of comments to be posted. Only used when called from the POST operation")@RequestParam(required = false, defaultValue = "10")Integer maxComments)
+                                  @Parameter(description = "Maximum number of videos")@RequestParam(required = false, defaultValue = "10") Integer maxVideos,
+                                  @Parameter(description = "Maximum number of comments")@RequestParam(required = false, defaultValue = "10")Integer maxComments)
             throws ChannelNotFoundException, VideoWithoutCommentsException, VideoNotFoundException {
 
         Channel channel = YoutubeChannelService.getChannel(id, maxVideos, maxComments);
